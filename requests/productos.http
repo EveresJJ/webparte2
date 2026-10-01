@@ -1,0 +1,77 @@
+@baseUrl = http://localhost:8080/api/productos
+
+### 1. GET exitoso - Listar todos los productos
+GET {{baseUrl}}
+Accept: application/json
+
+### 2. GET exitoso - Buscar producto por id
+GET {{baseUrl}}/1
+Accept: application/json
+
+### 3. POST exitoso - Registrar un producto
+POST {{baseUrl}}
+Content-Type: application/json
+Accept: application/json
+
+{
+  "nombre": "Teclado mecanico",
+  "descripcion": "Teclado mecanico para laboratorio de desarrollo",
+  "precio": 65.50,
+  "stock": 25,
+  "fechaVencimiento": "2028-12-31",
+  "activo": true,
+  "categoria": "ELECTRONICA"
+}
+
+### 4. PUT exitoso - Actualizar producto existente
+PUT {{baseUrl}}/1
+Content-Type: application/json
+Accept: application/json
+
+{
+  "nombre": "Laptop academica actualizada",
+  "descripcion": "Equipo portatil actualizado para clases y desarrollo",
+  "precio": 815.75,
+  "stock": 10,
+  "fechaVencimiento": "2029-06-30",
+  "activo": true,
+  "categoria": "ELECTRONICA"
+}
+
+### 5. DELETE exitoso - Eliminar producto existente
+DELETE {{baseUrl}}/2
+Accept: application/json
+
+### 6. POST invalido - Datos con errores de validacion
+POST {{baseUrl}}
+Content-Type: application/json
+Accept: application/json
+
+{
+  "nombre": "",
+  "descripcion": "Corto",
+  "precio": 0,
+  "stock": -4,
+  "fechaVencimiento": "2020-01-01",
+  "activo": null,
+  "categoria": null
+}
+
+### 7. PUT invalido - Actualizacion con datos incorrectos
+PUT {{baseUrl}}/1
+Content-Type: application/json
+Accept: application/json
+
+{
+  "nombre": "AB",
+  "descripcion": "",
+  "precio": -10,
+  "stock": -1,
+  "fechaVencimiento": "2021-05-10",
+  "activo": null,
+  "categoria": null
+}
+
+### 8. GET no encontrado - Identificador inexistente
+GET {{baseUrl}}/999
+Accept: application/json
